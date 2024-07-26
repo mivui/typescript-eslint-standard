@@ -309,7 +309,7 @@ export default tseslint.config(
     ],
   },
   {
-    files: ['**/tests/*.{j,t}s'],
+    files: ['**/*.{test,spec}.{j,t}s'],
     plugins: {
       vitest,
       'simple-import-sort': simpleImportSort,
