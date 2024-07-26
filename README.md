@@ -1,0 +1,39 @@
+# ⚡typescript-eslint-standard
+
+#### quickly start eslint in vue.
+[![npm version](https://img.shields.io/npm/v/typescript-eslint-standard.svg?style=flat-square)](https://www.npmjs.com/package/typescript-eslint-standard)
+[![Alt](https://img.shields.io/npm/dt/typescript-eslint-standard?style=flat-square)](https://npmcharts.com/compare/typescript-eslint-standard?minimal=true)
+![Vite Version](https://img.shields.io/badge/eslint->=9.0.0-brightgreen.svg?style=flat-square)
+![Alt](https://img.shields.io/github/license/mivui/typescript-eslint-standard?style=flat-square)
+
+
+### install
+
+```shell
+npm i typescript-eslint-standard -D
+```
+
+### eslint.config.js
+
+```js
+import tseslint from 'typescript-eslint';
+import tslint from 'typescript-eslint-standard';
+
+export default tseslint.config(...tslint);
+
+```
+
+### .prettierrc.js
+
+```js
+/**
+ * @type {import("prettier").Config}
+ */
+export default {
+  singleQuote: true,
+  trailingComma: 'all',
+  bracketSameLine: true,
+  endOfLine: 'auto',
+};
+
+```
