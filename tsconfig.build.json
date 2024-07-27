@@ -4,5 +4,5 @@
     "declaration": true,
     "emitDeclarationOnly": true
   },
-  // "exclude": ["lib/tests/**/*.js"]
+  "exclude": ["lib/tests/**/*.ts"]
 }

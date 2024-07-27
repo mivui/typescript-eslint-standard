@@ -126,6 +126,7 @@ const eslintRules = {
   'vars-on-top': 'error',
   yoda: 'error',
 };
+
 const typescriptRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
@@ -267,6 +268,7 @@ const typescriptRules = {
   '@typescript-eslint/sort-type-constituents': 'error',
   '@typescript-eslint/unbound-method': 'off',
 };
+
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -306,17 +308,12 @@ export default tseslint.config(
     ],
   },
   {
-    files: ['**/tests/*.{j,t}s'],
+    files: ['**/*.{test,spec}.{j,t}s'],
     plugins: {
       vitest,
-      'simple-import-sort': simpleImportSort,
     },
     rules: {
-      ...eslintRules,
-      ...typescriptRules,
       ...vitest.configs.recommended.rules,
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
     },
     settings: {
       vitest: {
