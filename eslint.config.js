@@ -20,11 +20,9 @@ const eslintRules = {
   'block-scoped-var': 'error',
   camelcase: 'error',
   complexity: 'error',
-  'consistent-return': 'error',
   'consistent-this': 'error',
   curly: ['error', 'multi-line'],
-  'default-param-last': 'error',
-  'dot-notation': 'error',
+  'default-param-last': 'off',
   eqeqeq: ['error', 'always', { null: 'ignore' }],
   'func-name-matching': 'error',
   'func-names': 'error',
@@ -35,7 +33,6 @@ const eslintRules = {
   'id-match': 'error',
   'logical-assignment-operators': 'error',
   'max-nested-callbacks': 'error',
-  'max-params': ['error', { max: 4 }],
   'no-alert': 'error',
   'no-await-in-loop': 'error',
   'no-bitwise': 'error',
@@ -44,7 +41,9 @@ const eslintRules = {
   'no-continue': 'error',
   'no-debugger': 'off',
   'no-div-regex': 'error',
+  'no-dupe-class-members': 'off',
   'no-else-return': 'error',
+  'no-empty': 'error',
   'no-eq-null': 'error',
   'no-eval': 'error',
   'no-extend-native': 'error',
@@ -52,13 +51,11 @@ const eslintRules = {
   'no-implicit-coercion': 'error',
   'no-implicit-globals': 'error',
   'no-inner-declarations': 'error',
-  'no-invalid-this': 'error',
   'no-iterator': 'error',
   'no-label-var': 'error',
   'no-labels': ['error', { allowLoop: false, allowSwitch: false }],
   'no-lone-blocks': 'error',
   'no-lonely-if': 'error',
-  'no-loop-func': 'error',
   'no-multi-assign': 'error',
   'no-multi-str': 'error',
   'no-nested-ternary': 'error',
@@ -75,9 +72,9 @@ const eslintRules = {
   ],
   'no-promise-executor-return': 'error',
   'no-proto': 'error',
+  'no-redeclare': 'off',
   'no-restricted-exports': 'error',
   'no-restricted-globals': 'error',
-  'no-restricted-imports': 'error',
   'no-restricted-properties': 'error',
   'no-restricted-syntax': 'error',
   'no-return-assign': ['error', 'except-parens'],
@@ -97,6 +94,7 @@ const eslintRules = {
   'no-unmodified-loop-condition': 'error',
   'no-unneeded-ternary': ['error', { defaultAssignment: false }],
   'no-unreachable-loop': 'error',
+  'no-unused-vars': 'off',
   'no-useless-call': 'error',
   'no-useless-computed-key': 'error',
   'no-useless-concat': 'error',
@@ -126,7 +124,6 @@ const eslintRules = {
   'vars-on-top': 'error',
   yoda: 'error',
 };
-
 const typescriptRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
@@ -134,6 +131,7 @@ const typescriptRules = {
   '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
   '@typescript-eslint/consistent-generic-constructors': ['error', 'constructor'],
   '@typescript-eslint/consistent-indexed-object-style': 'off',
+  '@typescript-eslint/consistent-return': 'error',
   '@typescript-eslint/consistent-type-assertions': [
     'error',
     {
@@ -156,6 +154,7 @@ const typescriptRules = {
       prefer: 'type-imports',
     },
   ],
+  '@typescript-eslint/default-param-last': 'error',
   '@typescript-eslint/dot-notation': [
     'error',
     {
@@ -175,6 +174,7 @@ const typescriptRules = {
     },
   ],
   '@typescript-eslint/explicit-module-boundary-types': 'off',
+  '@typescript-eslint/max-params': ['error', { max: 4 }],
   '@typescript-eslint/method-signature-style': 'error',
   '@typescript-eslint/naming-convention': [
     'error',
@@ -196,10 +196,12 @@ const typescriptRules = {
   '@typescript-eslint/no-empty-object-type': 'off',
   '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
   '@typescript-eslint/no-floating-promises': 'off',
+  '@typescript-eslint/no-invalid-this': 'error',
   '@typescript-eslint/no-invalid-void-type': 'error',
   '@typescript-eslint/no-loss-of-precision': 'error',
   '@typescript-eslint/no-misused-promises': 'off',
   '@typescript-eslint/no-redeclare': ['error', { builtinGlobals: false }],
+  '@typescript-eslint/no-restricted-imports': 'error',
   '@typescript-eslint/no-shadow': 'error',
   '@typescript-eslint/no-this-alias': ['error', { allowDestructuring: true }],
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
@@ -268,66 +270,79 @@ const typescriptRules = {
   '@typescript-eslint/sort-type-constituents': 'error',
   '@typescript-eslint/unbound-method': 'off',
 };
-
-export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.strictTypeChecked,
-  prettierConfig,
-  prettierRecommended,
-  {
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: true,
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
+const tseslintRules = {
+  'simple-import-sort/imports': 'error',
+  'simple-import-sort/exports': 'error',
+  ...eslintRules,
+  ...typescriptRules,
+};
+function defineConfig(config) {
+  const { files, ignores, languageOptions, plugins, rules } = config ?? {};
+  return tseslint.config(
+    eslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
+    ...tseslint.configs.strictTypeChecked,
+    prettierConfig,
+    prettierRecommended,
+    {
+      name: 'typescript-eslint-standard',
+      files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],
+      languageOptions: languageOptions ?? {
+        parser: tseslint.parser,
+        parserOptions: {
+          project: true,
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          ecmaFeatures: {
+            jsx: true,
+          },
+        },
+      },
+      plugins: {
+        'simple-import-sort': simpleImportSort,
+        ...plugins,
+      },
+      rules: {
+        ...tseslintRules,
+        ...rules,
+      },
+      ignores: ignores ?? [
+        'node_modules',
+        'dist',
+        'build',
+        'package.json',
+        '**/*.md',
+        ' **/*.svg',
+        '**/*.ejs',
+        '**/*.html',
+      ],
+    },
+    {
+      name: 'vitest-eslint-standard',
+      files: ['**/*.{test,spec}.{j,t}s', '**/*.{test,spec}.{j,t}sx'],
+      plugins: {
+        vitest,
+      },
+      rules: {
+        ...vitest.configs.recommended.rules,
+        ...rules,
+      },
+      settings: {
+        vitest: {
+          typecheck: true,
+        },
+      },
+      languageOptions: {
+        globals: {
+          ...vitest.environments.env.globals,
         },
       },
     },
-    plugins: {
-      'simple-import-sort': simpleImportSort,
+    {
+      files: ['**/*.js', '**/*.jsx'],
+      ...tseslint.configs.disableTypeChecked,
     },
-    rules: {
-      ...eslintRules,
-      ...typescriptRules,
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-    },
-    ignores: [
-      'node_modules',
-      'dist',
-      'build',
-      'package.json',
-      '**/*.md',
-      ' **/*.svg',
-      '**/*.ejs',
-      '**/*.html',
-    ],
-  },
-  {
-    files: ['**/*.{test,spec}.{j,t}s'],
-    plugins: {
-      vitest,
-    },
-    rules: {
-      ...vitest.configs.recommended.rules,
-    },
-    settings: {
-      vitest: {
-        typecheck: true,
-      },
-    },
-    languageOptions: {
-      globals: {
-        ...vitest.environments.env.globals,
-      },
-    },
-  },
-  {
-    files: ['**/*.js'],
-    ...tseslint.configs.disableTypeChecked,
-  },
-);
+  );
+}
+
+export default defineConfig();

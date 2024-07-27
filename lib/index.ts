@@ -44,7 +44,7 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   'no-div-regex': 'error',
   'no-dupe-class-members': 'off',
   'no-else-return': 'error',
-  'no-empty': 'off',
+  'no-empty': 'error',
   'no-eq-null': 'error',
   'no-eval': 'error',
   'no-extend-native': 'error',
@@ -157,7 +157,6 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
     },
   ],
   '@typescript-eslint/default-param-last': 'error',
-  '@typescript-eslint/dno-invalid-this': 'error',
   '@typescript-eslint/dot-notation': [
     'error',
     {
@@ -194,7 +193,6 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   ],
   '@typescript-eslint/no-dupe-class-members': 'error',
   '@typescript-eslint/no-dynamic-delete': 'error',
-  '@typescript-eslint/no-empty': 'error',
   '@typescript-eslint/no-empty-function': 'off',
   '@typescript-eslint/no-empty-interface': 'off',
   '@typescript-eslint/no-empty-object-type': 'off',
@@ -292,7 +290,7 @@ export function defineConfig(config?: TSESLint.FlatConfig.Config): TSESLint.Flat
     prettierRecommended,
     {
       name: 'typescript-eslint-standard',
-      files,
+      files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],
       languageOptions: languageOptions ?? {
         parser: tseslint.parser,
         parserOptions: {
@@ -325,7 +323,7 @@ export function defineConfig(config?: TSESLint.FlatConfig.Config): TSESLint.Flat
     },
     {
       name: 'vitest-eslint-standard',
-      files: ['**/*.{test,spec}.{j,t}s'],
+      files: ['**/*.{test,spec}.{j,t}s', '**/*.{test,spec}.{j,t}sx'],
       plugins: {
         vitest,
       },
@@ -345,7 +343,7 @@ export function defineConfig(config?: TSESLint.FlatConfig.Config): TSESLint.Flat
       },
     },
     {
-      files: ['**/*.js'],
+      files: ['**/*.js', '**/*.jsx'],
       ...tseslint.configs.disableTypeChecked,
     },
   );
