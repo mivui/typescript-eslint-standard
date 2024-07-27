@@ -1,6 +1,6 @@
 # ⚡typescript-eslint-standard
 
-#### quickly start eslint in vue.
+#### quickly start eslint in typescript.
 
 [![npm version](https://img.shields.io/npm/v/typescript-eslint-standard.svg?style=flat-square)](https://www.npmjs.com/package/typescript-eslint-standard)
 [![Alt](https://img.shields.io/npm/dt/typescript-eslint-standard?style=flat-square)](https://npmcharts.com/compare/typescript-eslint-standard?minimal=true)
