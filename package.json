@@ -1,6 +1,6 @@
 {
   "name": "typescript-eslint-standard",
-  "version": "9.0.10",
+  "version": "9.0.11",
   "description": "quickly start eslint in typescript",
   "type": "module",
   "main": "./dist/index.js",
