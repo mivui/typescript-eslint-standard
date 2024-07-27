@@ -131,7 +131,6 @@ const typescriptRules = {
   '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
   '@typescript-eslint/consistent-generic-constructors': ['error', 'constructor'],
   '@typescript-eslint/consistent-indexed-object-style': 'off',
-  '@typescript-eslint/consistent-return': 'error',
   '@typescript-eslint/consistent-type-assertions': [
     'error',
     {
