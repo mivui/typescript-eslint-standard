@@ -280,14 +280,20 @@ export const tseslintRules: TSESLint.FlatConfig.Rules = {
   ...typescriptRules,
 };
 
-export function defineConfig(config?: TSESLint.FlatConfig.Config): TSESLint.FlatConfig.ConfigArray {
+export function defineConfig(options?: {
+  extends?: TSESLint.FlatConfig.Config[];
+  config?: TSESLint.FlatConfig.Config;
+}): TSESLint.FlatConfig.ConfigArray {
+  const { extends: inherit, config } = options ?? {};
   const { files, ignores, languageOptions, plugins, rules } = config ?? {};
+  const inherits = inherit ?? [];
   return tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
     ...tseslint.configs.strictTypeChecked,
     prettierConfig,
     prettierRecommended,
+    ...inherits,
     {
       name: 'typescript-eslint-standard',
       files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],

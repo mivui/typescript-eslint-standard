@@ -276,14 +276,17 @@ const tseslintRules = {
   ...eslintRules,
   ...typescriptRules,
 };
-function defineConfig(config) {
+function defineConfig(options) {
+  const { extends: inherit, config } = options ?? {};
   const { files, ignores, languageOptions, plugins, rules } = config ?? {};
+  const inherits = inherit ?? [];
   return tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
     ...tseslint.configs.strictTypeChecked,
     prettierConfig,
     prettierRecommended,
+    ...inherits,
     {
       name: 'typescript-eslint-standard',
       files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],
