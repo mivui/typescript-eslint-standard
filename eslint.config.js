@@ -277,7 +277,7 @@ const tseslintRules = {
 };
 function defineConfig(options) {
   const { extends: inherit, config } = options ?? {};
-  const { files, ignores, languageOptions, plugins, rules } = config ?? {};
+  const { files, ignores, languageOptions, plugins, rules, globals, settings } = config ?? {};
   const inherits = inherit ?? [];
   return tseslint.config(
     eslint.configs.recommended,
@@ -291,6 +291,7 @@ function defineConfig(options) {
       files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],
       languageOptions: languageOptions ?? {
         parser: tseslint.parser,
+        globals: globals ?? {},
         parserOptions: {
           project: true,
           ecmaVersion: 'latest',
@@ -318,6 +319,7 @@ function defineConfig(options) {
         '**/*.ejs',
         '**/*.html',
       ],
+      settings: settings ?? {},
     },
     {
       name: 'vitest-eslint-standard',
