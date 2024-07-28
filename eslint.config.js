@@ -275,9 +275,17 @@ const tseslintRules = {
   ...eslintRules,
   ...typescriptRules,
 };
-function defineConfig(options) {
-  const { extends: inherit, config } = options ?? {};
-  const { files, ignores, languageOptions, plugins, rules, globals, settings } = config ?? {};
+function defineConfig(config) {
+  const {
+    extends: inherit,
+    files,
+    ignores,
+    languageOptions,
+    plugins,
+    rules,
+    globals,
+    settings,
+  } = config ?? {};
   const inherits = inherit ?? [];
   return tseslint.config(
     eslint.configs.recommended,
