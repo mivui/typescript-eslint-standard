@@ -159,10 +159,10 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/dot-notation': [
     'error',
     {
-      allowKeywords: true,
       allowPattern: '',
-      allowIndexSignaturePropertyAccess: false,
+      allowKeywords: true,
       allowPrivateClassPropertyAccess: false,
+      allowIndexSignaturePropertyAccess: false,
       allowProtectedClassPropertyAccess: false,
     },
   ],
@@ -193,8 +193,13 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/no-dupe-class-members': 'error',
   '@typescript-eslint/no-dynamic-delete': 'error',
   '@typescript-eslint/no-empty-function': 'off',
-  '@typescript-eslint/no-empty-interface': 'off',
-  '@typescript-eslint/no-empty-object-type': 'off',
+  '@typescript-eslint/no-empty-object-type': [
+    'error',
+    {
+      allowInterfaces: 'always',
+      allowObjectTypes: 'always',
+    },
+  ],
   '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
   '@typescript-eslint/no-floating-promises': 'off',
   '@typescript-eslint/no-invalid-this': 'error',
@@ -223,11 +228,13 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/no-unused-vars': [
     'error',
     {
-      vars: 'all',
-      args: 'none',
-      caughtErrors: 'none',
-      ignoreRestSiblings: true,
+      args: 'all',
       argsIgnorePattern: '^_',
+      caughtErrors: 'all',
+      caughtErrorsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+      ignoreRestSiblings: true,
     },
   ],
   '@typescript-eslint/no-use-before-define': [
