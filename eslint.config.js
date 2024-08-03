@@ -195,7 +195,6 @@ const typescriptRules = {
     'error',
     {
       allowInterfaces: 'always',
-      allowObjectTypes: 'always',
     },
   ],
   '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
@@ -210,6 +209,7 @@ const typescriptRules = {
   '@typescript-eslint/no-this-alias': ['error', { allowDestructuring: true }],
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
   '@typescript-eslint/no-unnecessary-condition': 'off',
+  '@typescript-eslint/no-unnecessary-type-parameters': 'off',
   '@typescript-eslint/no-unsafe-argument': 'off',
   '@typescript-eslint/no-unsafe-assignment': 'off',
   '@typescript-eslint/no-unsafe-enum-comparison': 'off',
