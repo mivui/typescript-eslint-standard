@@ -197,7 +197,6 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
     'error',
     {
       allowInterfaces: 'always',
-      allowObjectTypes: 'always',
     },
   ],
   '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
@@ -212,6 +211,7 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/no-this-alias': ['error', { allowDestructuring: true }],
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
   '@typescript-eslint/no-unnecessary-condition': 'off',
+  '@typescript-eslint/no-unnecessary-type-parameters': 'off',
   '@typescript-eslint/no-unsafe-argument': 'off',
   '@typescript-eslint/no-unsafe-assignment': 'off',
   '@typescript-eslint/no-unsafe-enum-comparison': 'off',
@@ -277,6 +277,12 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/return-await': 'error',
   '@typescript-eslint/sort-type-constituents': 'error',
   '@typescript-eslint/unbound-method': 'off',
+  '@typescript-eslint/unified-signatures': [
+    'error',
+    {
+      ignoreDifferentlyNamedParameters: true,
+    },
+  ],
 };
 
 export const tseslintRules: TSESLint.FlatConfig.Rules = {

@@ -275,6 +275,7 @@ const typescriptRules = {
   '@typescript-eslint/return-await': 'error',
   '@typescript-eslint/sort-type-constituents': 'error',
   '@typescript-eslint/unbound-method': 'off',
+  '@typescript-eslint/unified-signatures': 'off',
 };
 const tseslintRules = {
   'simple-import-sort/imports': 'error',
