@@ -157,10 +157,10 @@ const typescriptRules = {
   '@typescript-eslint/dot-notation': [
     'error',
     {
-      allowKeywords: true,
       allowPattern: '',
-      allowIndexSignaturePropertyAccess: false,
+      allowKeywords: true,
       allowPrivateClassPropertyAccess: false,
+      allowIndexSignaturePropertyAccess: false,
       allowProtectedClassPropertyAccess: false,
     },
   ],

@@ -277,12 +277,7 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/return-await': 'error',
   '@typescript-eslint/sort-type-constituents': 'error',
   '@typescript-eslint/unbound-method': 'off',
-  '@typescript-eslint/unified-signatures': [
-    'error',
-    {
-      ignoreDifferentlyNamedParameters: true,
-    },
-  ],
+  '@typescript-eslint/unified-signatures': 'off',
 };
 
 export const tseslintRules: TSESLint.FlatConfig.Rules = {
