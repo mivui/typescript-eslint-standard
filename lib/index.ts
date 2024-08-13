@@ -7,7 +7,10 @@ import vitest from 'eslint-plugin-vitest';
 import tseslint from 'typescript-eslint';
 
 export const eslintRules: TSESLint.FlatConfig.Rules = {
-  'accessor-pairs': ['error', { enforceForClassMembers: true, getWithoutSet: false, setWithoutGet: true }],
+  'accessor-pairs': [
+    'error',
+    { enforceForClassMembers: true, getWithoutSet: false, setWithoutGet: true },
+  ],
   'array-callback-return': [
     'error',
     {
@@ -250,7 +253,10 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   ],
   '@typescript-eslint/no-useless-constructor': 'error',
   '@typescript-eslint/no-var-requires': 'error',
-  '@typescript-eslint/only-throw-error': ['error', { allowThrowingAny: false, allowThrowingUnknown: false }],
+  '@typescript-eslint/only-throw-error': [
+    'error',
+    { allowThrowingAny: false, allowThrowingUnknown: false },
+  ],
   '@typescript-eslint/prefer-destructuring': [
     'error',
     {
@@ -288,7 +294,8 @@ export const tseslintRules: TSESLint.FlatConfig.Rules = {
   ...typescriptRules,
 };
 
-export interface Config extends Omit<TSESLint.FlatConfig.Config, 'linterOptions' | 'name' | 'processor'> {
+export interface Config
+  extends Omit<TSESLint.FlatConfig.Config, 'linterOptions' | 'name' | 'processor'> {
   extends?: TSESLint.FlatConfig.Config[];
   globals?: TSESLint.SharedConfig.GlobalsConfig;
 }

@@ -6,7 +6,10 @@ import vitest from 'eslint-plugin-vitest';
 import tseslint from 'typescript-eslint';
 
 const eslintRules = {
-  'accessor-pairs': ['error', { enforceForClassMembers: true, getWithoutSet: false, setWithoutGet: true }],
+  'accessor-pairs': [
+    'error',
+    { enforceForClassMembers: true, getWithoutSet: false, setWithoutGet: true },
+  ],
   'array-callback-return': [
     'error',
     {
@@ -248,7 +251,10 @@ const typescriptRules = {
   ],
   '@typescript-eslint/no-useless-constructor': 'error',
   '@typescript-eslint/no-var-requires': 'error',
-  '@typescript-eslint/only-throw-error': ['error', { allowThrowingAny: false, allowThrowingUnknown: false }],
+  '@typescript-eslint/only-throw-error': [
+    'error',
+    { allowThrowingAny: false, allowThrowingUnknown: false },
+  ],
   '@typescript-eslint/prefer-destructuring': [
     'error',
     {

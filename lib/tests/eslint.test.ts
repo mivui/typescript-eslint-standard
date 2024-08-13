@@ -5,17 +5,15 @@ import tseslint from 'typescript-eslint';
 import { eslintRules } from '..';
 
 describe('eslint2tslint', () => {
-  const recommendedRules = tseslint.configs.recommendedTypeChecked.reduce<TSESLint.FlatConfig.Rules>(
-    (pre, next) => {
+  const recommendedRules =
+    tseslint.configs.recommendedTypeChecked.reduce<TSESLint.FlatConfig.Rules>((pre, next) => {
       if (next.rules) {
         Object.keys(next.rules).forEach((key) => {
           pre[key] = (next.rules as TSESLint.FlatConfig.Rules)[key];
         });
       }
       return pre;
-    },
-    {},
-  );
+    }, {});
   const strictTypeChecked = tseslint.configs.strictTypeChecked.reduce<TSESLint.FlatConfig.Rules>(
     (pre, next) => {
       if (next.rules) {
