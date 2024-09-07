@@ -1,6 +1,6 @@
 {
   "name": "typescript-eslint-standard",
-  "version": "9.3.0",
+  "version": "9.4.0",
   "description": "quickly start eslint in typescript",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,9 +22,9 @@
     "build": "rollup -c rollup.config.js",
     "test": "vitest"
   },
-  "dependencies": {
-    "@eslint/js": "^9.9.1",
-    "eslint": "^9.9.1",
+  "": {
+    "@eslint/js": "^9.10.0",
+    "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
@@ -39,7 +39,7 @@
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^22.5.2",
+    "@types/node": "^22.5.4",
     "rollup": "^4.21.2",
     "rollup-plugin-dts": "^6.1.1",
     "tslib": "^2.7.0",
