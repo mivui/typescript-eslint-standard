@@ -22,7 +22,7 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   'arrow-body-style': ['error', 'as-needed', { requireReturnForObjectLiteral: true }],
   'arrow-parens': 'error',
   'block-scoped-var': 'error',
-  camelcase: 'error',
+  camelcase: 'warn',
   complexity: 'error',
   'consistent-this': 'error',
   curly: ['error', 'multi-line'],
@@ -88,7 +88,7 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   'no-template-curly-in-string': 'error',
   'no-undef-init': 'error',
   'no-underscore-dangle': [
-    'error',
+    'warn',
     {
       allowAfterThis: true,
       allowAfterSuper: true,
@@ -181,7 +181,7 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/max-params': ['error', { max: 4 }],
   '@typescript-eslint/method-signature-style': 'error',
   '@typescript-eslint/naming-convention': [
-    'error',
+    'warn',
     {
       format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
       leadingUnderscore: 'allow',
