@@ -107,6 +107,7 @@ const eslintRules = {
   'object-shorthand': ['warn', 'properties'],
   'operator-assignment': 'error',
   'prefer-arrow-callback': 'error',
+  'prefer-const': 'error',
   'prefer-numeric-literals': 'error',
   'prefer-object-has-own': 'error',
   'prefer-object-spread': 'error',
