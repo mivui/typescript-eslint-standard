@@ -243,11 +243,11 @@ const typescriptRules = {
   '@typescript-eslint/no-use-before-define': [
     'error',
     {
-      classes: false,
-      enums: false,
-      functions: false,
+      classes: true,
+      enums: true,
+      functions: true,
       typedefs: false,
-      variables: false,
+      variables: true,
     },
   ],
   '@typescript-eslint/no-useless-constructor': 'error',
