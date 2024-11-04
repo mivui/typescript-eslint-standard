@@ -322,7 +322,7 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
     ...inherits,
     {
       name: 'typescript-eslint-standard',
-      files: files ?? ['**/*.{j,t}s', '**/*.{j,t}sx'],
+      files: files ?? ['**/*.{j,t}s', '**/*.m{j,t}s', '**/*.{j,t}sx'],
       languageOptions: languageOptions ?? {
         parser: tseslint.parser,
         globals: globals ?? {},
