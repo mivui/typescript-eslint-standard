@@ -367,7 +367,7 @@ function defineConfig(config) {
       },
     },
     {
-      files: ['**/*.js', '**/*.jsx'],
+      files: ['**/*.js', '**/*.mjs', '**/*.jsx'],
       ...tseslint.configs.disableTypeChecked,
     },
   );
