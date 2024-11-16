@@ -205,7 +205,7 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   ],
   '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
   '@typescript-eslint/no-floating-promises': 'off',
-  '@typescript-eslint/no-invalid-this': 'error',
+  '@typescript-eslint/no-invalid-this': ['error', { capIsConstructor: false }],
   '@typescript-eslint/no-invalid-void-type': 'error',
   '@typescript-eslint/no-loss-of-precision': 'error',
   '@typescript-eslint/no-misused-promises': 'off',
