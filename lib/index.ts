@@ -362,7 +362,7 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
         vitest,
       },
       rules: {
-        ...vitest.configs.recommended.rules,
+        ...vitest.configs?.recommended.rules,
         ...rules,
       },
       settings: {
@@ -372,7 +372,7 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
       },
       languageOptions: {
         globals: {
-          ...vitest.environments.env.globals,
+          ...vitest.environments?.env.globals,
         },
       },
     },
