@@ -4,6 +4,7 @@ import vitest from '@vitest/eslint-plugin';
 import prettierConfig from 'eslint-config-prettier';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import Globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export const eslintRules: TSESLint.FlatConfig.Rules = {
@@ -39,7 +40,7 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   'max-nested-callbacks': 'error',
   'no-alert': 'error',
   'no-await-in-loop': 'error',
-  'no-bitwise': 'error',
+  'no-bitwise': 'off',
   'no-caller': 'error',
   'no-constructor-return': 'error',
   'no-continue': 'error',
@@ -68,12 +69,7 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   'no-new-wrappers': 'error',
   'no-object-constructor': 'error',
   'no-octal-escape': 'error',
-  'no-plusplus': [
-    'error',
-    {
-      allowForLoopAfterthoughts: true,
-    },
-  ],
+  'no-plusplus': 'off',
   'no-promise-executor-return': 'error',
   'no-proto': 'error',
   'no-redeclare': 'off',
@@ -325,7 +321,7 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
       files: files ?? ['**/*.{j,t}s', '**/*.m{j,t}s', '**/*.{j,t}sx'],
       languageOptions: languageOptions ?? {
         parser: tseslint.parser,
-        globals: globals ?? {},
+        globals: { ...Globals.browser, ...Globals.node, ...globals },
         parserOptions: {
           project: true,
           ecmaVersion: 'latest',
