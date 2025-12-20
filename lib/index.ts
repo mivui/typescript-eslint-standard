@@ -1,13 +1,17 @@
+import { type ConfigObject, type RulesConfig } from '@eslint/core';
 import eslint from '@eslint/js';
 import { type TSESLint } from '@typescript-eslint/utils';
 import vitest from '@vitest/eslint-plugin';
+import { defineConfig as eslintConfig } from 'eslint/config';
 import prettierConfig from 'eslint-config-prettier';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import Globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export const eslintRules: TSESLint.FlatConfig.Rules = {
+export const eslintRules: RulesConfig = {
+  'simple-import-sort/imports': 'error',
+  'simple-import-sort/exports': 'error',
   'accessor-pairs': [
     'error',
     { enforceForClassMembers: true, getWithoutSet: false, setWithoutGet: true },
@@ -126,7 +130,8 @@ export const eslintRules: TSESLint.FlatConfig.Rules = {
   yoda: 'error',
 };
 
-export const typescriptRules: TSESLint.FlatConfig.Rules = {
+export const tslintRules: RulesConfig = {
+  ...eslintRules,
   '@typescript-eslint/no-explicit-any': 'off',
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
@@ -286,22 +291,14 @@ export const typescriptRules: TSESLint.FlatConfig.Rules = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-export const tseslintRules: TSESLint.FlatConfig.Rules = {
-  'simple-import-sort/imports': 'error',
-  'simple-import-sort/exports': 'error',
-  ...eslintRules,
-  ...typescriptRules,
-};
-
-export interface Config
-  extends Omit<TSESLint.FlatConfig.Config, 'linterOptions' | 'name' | 'processor'> {
-  extends?: TSESLint.FlatConfig.Config[];
+export interface Config extends Omit<ConfigObject, 'linterOptions' | 'name' | 'processor'> {
+  extends?: ConfigObject[];
   globals?: TSESLint.SharedConfig.GlobalsConfig;
 }
 
-export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
+export function defineConfig(config?: Config) {
   const {
-    extends: inherit,
+    extends: extendConfigs,
     files,
     ignores,
     languageOptions,
@@ -310,14 +307,14 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
     globals,
     settings,
   } = config ?? {};
-  const inherits = inherit ?? [];
-  return tseslint.config(
+  const configs = extendConfigs ?? [];
+  return eslintConfig(
     eslint.configs.recommended,
-    ...tseslint.configs.recommendedTypeChecked,
-    ...tseslint.configs.strictTypeChecked,
+    tseslint.configs.recommendedTypeChecked,
+    tseslint.configs.strictTypeChecked,
     prettierConfig,
     prettierRecommended,
-    ...inherits,
+    ...configs,
     {
       name: 'typescript-eslint-standard',
       files: files ?? ['**/*.{j,t}s', '**/*.m{j,t}s', '**/*.{j,t}sx'],
@@ -338,7 +335,7 @@ export function defineConfig(config?: Config): TSESLint.FlatConfig.ConfigArray {
         ...plugins,
       },
       rules: {
-        ...tseslintRules,
+        ...tslintRules,
         ...rules,
       },
       ignores: ignores ?? [

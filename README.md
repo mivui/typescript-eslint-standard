@@ -49,3 +49,37 @@ export default defineConfig({
   },
 });
 ```
+
+### only use js rules
+
+```js
+import { eslintRules } from 'typescript-eslint-standard';
+import { defineConfig } from 'eslint/config';
+import eslint from '@eslint/js';
+
+export default defineConfig(eslint.configs.recommended, {
+  rules: {
+    ...eslintRules,
+  },
+});
+```
+
+### only use ts rules
+
+```js
+import { tslintRules } from 'typescript-eslint-standard';
+import { defineConfig } from 'eslint/config';
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default defineConfig(
+  eslint.configs.recommended,
+  tseslint.configs.recommendedTypeChecked,
+  tseslint.configs.strictTypeChecked,
+  {
+    rules: {
+      ...tslintRules,
+    },
+  },
+);
+```
