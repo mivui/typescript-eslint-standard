@@ -206,7 +206,10 @@ export const tslintRules: RulesConfig = {
       allowInterfaces: 'always',
     },
   ],
-  '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
+  '@typescript-eslint/no-extraneous-class': [
+    'error',
+    { allowStaticOnly: true, allowWithDecorator: true },
+  ],
   '@typescript-eslint/no-floating-promises': 'off',
   '@typescript-eslint/no-invalid-this': ['error', { capIsConstructor: false }],
   '@typescript-eslint/no-invalid-void-type': 'error',
